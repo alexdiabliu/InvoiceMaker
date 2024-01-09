@@ -18,6 +18,7 @@ class Tasks:
         self.amount = self.quantity*self.unit_price
         return
     
+
 class Bill:
     def __init__(self, tasks, date_supply, date_invoice):
         self.tasks = tasks

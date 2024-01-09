@@ -1,6 +1,7 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import webbrowser
+from textwrap import wrap
 
 class PdfReport:
     """
@@ -75,10 +76,13 @@ class PdfReport:
         y_position = letter[1] -270
 
         for task in tasks:
+            task_name = task.name  # Get the task name
+            wrapped_task_name = "\n".join(wrap(task_name, width=20))  # Wrap the task name to 20 characters per line
+
             task_text_object = c.beginText(100, y_position)
             task_text_object.setFont("Helvetica", 10)
             task_text_object.setTextOrigin(100, y_position)
-            task_text_object.textLines(str(task.name))
+            task_text_object.textLines(str(wrapped_task_name))
             c.drawText(task_text_object)
 
             c.drawString(100 + task_header_width, y_position, str(task.quantity))

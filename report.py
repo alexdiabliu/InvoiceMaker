@@ -9,7 +9,7 @@ class PdfReport:
     def __init__(self, filename):
         self.filename = filename
 
-    def generate(self, payer, payee, bill, tasks, invoice_number=0):
+    def generate(self, payer, payee, bill, tasks):
         # Create a PDF document
         c = canvas.Canvas(self.filename, pagesize=letter)
 
@@ -24,7 +24,7 @@ class PdfReport:
 
         # Add invoice number, date, and period on the centered row
         c.setFont("Helvetica-Bold", 10)
-        c.drawCentredString(letter[0] / 2 - 150, center_y, f"Invoice Number: {invoice_number}")
+        c.drawCentredString(letter[0] / 2 - 150, center_y, f"Invoice Number: {bill.invoice_number}")
         c.drawCentredString(letter[0] / 2, center_y, f"Invoice Date: {bill.date_invoice}")
         c.drawCentredString(letter[0] / 2 + 150, center_y, f"Period: {bill.date_supply}")
 
@@ -42,7 +42,6 @@ class PdfReport:
         c.setFont("Helvetica-Bold", 12)
         c.drawString(300, letter[1] - 120, "Payee:")
 
-
         # Set font for subfields
         c.setFillColorRGB(0, 0, 0)  # Reset color to black
         c.setFont("Helvetica", 8)
@@ -56,24 +55,25 @@ class PdfReport:
         c.drawString(300, letter[1] - 165, f"Phone: {payee.phone}")
         c.drawString(300, letter[1] - 180, f"Location: {payee.location}")
 
-
-
         # Set font for table header
         c.setFont("Helvetica-Bold", 10)
 
+        # Adjust y_position for space above the headers
+        y_position = letter[1] - 250  # Adjust the value as needed
 
         # Add task, quantity, unit price, and price headers
         task_header_width = 150
-        c.drawString(100, letter[1] - 190, "Task")
-        c.drawString(100 + task_header_width, letter[1] - 190, "Quantity")
-        c.drawString(200 + task_header_width, letter[1] - 190, "Unit Price")
-        c.drawString(300 + task_header_width, letter[1] - 190, "Price")
+        c.drawString(100, y_position, "Task")
+        c.drawString(100 + task_header_width, y_position, "Quantity")
+        c.drawString(200 + task_header_width, y_position, "Unit Price")
+        c.drawString(300 + task_header_width, y_position, "Price")
 
         # Set font for table content
         c.setFont("Helvetica", 10)
 
         # Add each task in the list
-        y_position = letter[1] - 210
+        y_position = letter[1] -270
+
         for task in tasks:
             task_text_object = c.beginText(100, y_position)
             task_text_object.setFont("Helvetica", 10)

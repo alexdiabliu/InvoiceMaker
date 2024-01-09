@@ -1,24 +1,21 @@
 
+
 class Stakeholder:
-    """
-    Contains generic user data of all parties involved
-    """
     def __init__(self, name, email, phone, location):
         self.name = name
         self.email = email
         self.phone = phone
         self.location = location
 
-class Payee(Stakeholder):
-    """
-    Inherits generic data from stakeholder and also holds payee-specific information
-    """
-    def oi(self):
-        pass
-
 class Payer(Stakeholder):
-    """
-     Inherits generic data from stakeholder and also holds payer-specific information
-    """
-    def iu(self):
-        pass
+    def __init__(self, name, email, phone, location, billing_info=None, purchase_history=None):
+        super().__init__(name, email, phone, location)
+        self.billing_info = billing_info
+        self.purchase_history = purchase_history or []
+
+class Payee(Stakeholder):
+    def __init__(self, name, email, phone, location, business_info=None, services_offered=None, banking_details=None):
+        super().__init__(name, email, phone, location)
+        self.business_info = business_info
+        self.services_offered = services_offered
+        self.banking_details = banking_details or []

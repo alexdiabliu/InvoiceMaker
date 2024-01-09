@@ -50,6 +50,7 @@ Invoice Maker is a Python tool for generating PDF invoices with stakeholder deta
 - Adjust the layout and appearance of the PDF by modifying the `PdfReport` class in `report.py`.
 
 ## Example
+
 <img width="503" alt="image" src="https://github.com/alexdiabliu/InvoiceMaker/assets/88401570/cc43f8bf-a632-4ebf-8896-f39e6876f70d">
 
 ## Usage of Object-Oriented Principles
@@ -66,7 +67,6 @@ The codebase is organized into modular components:
 - `main.py`: Entry point of the application where stakeholders and tasks are defined.
 - `report.py`: Contains the `PdfReport` class responsible for generating the PDF invoice.
 - `models.py`: Defines classes for stakeholders (`Payer` and `Payee`), tasks (`Task`), and bills (`Bill`).
-
 
 ## Future Enhancements
 

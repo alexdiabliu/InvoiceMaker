@@ -14,7 +14,7 @@ class Tasks:
         self.description = description
         return
     
-    def __set_amount(self):
+    def set_amount(self):
         self.amount = self.quantity*self.unit_price
         return
     
@@ -35,3 +35,9 @@ class Bill:
         with open("current_invoice_number.txt", "w") as invoice_num_file:
             invoice_num_file.write(str(self.invoice_number+1))
         return
+    
+    def set_total_price(self):
+        self.total_price = 0
+        for i in self.tasks:
+            self.total_price += i.amount
+        return self.total_price

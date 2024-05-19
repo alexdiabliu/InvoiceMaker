@@ -89,7 +89,7 @@ class PdfReport:
             c.drawString(200 + task_header_width, y_position, f"${task.unit_price:.2f}")
             c.drawString(300 + task_header_width, y_position, f"${task.amount:.2f}")
 
-            y_position -= 18  # Adjust the vertical position for the next task
+            y_position -= 40  # Adjust the vertical position for the next task
 
         # Add total price
         c.setFont("Helvetica-Bold", 12)
